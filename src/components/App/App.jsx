@@ -1,17 +1,30 @@
 import React from 'react';
 import './App.css';
 import Header from '../Header/Header';
+import SearchBox from '../SearchBox/SearchBox';
 
 class App extends React.Component{
 
     state = {
         headerText : 'Name It !',
+        headerExpanded:true,
     };
+
+    handleInputChange= (inputText) =>{
+        this.setState({
+            headerExpanded: !(inputText.length>0)
+        });
+        // console.log('Input text - ', inputText);
+    }
     render(){
         return(
             <div>
-            <Header headTitle={this.state.headerText}/>
+            <Header 
+             headerExpanded={this.state.headerExpanded} 
+             headTitle={this.state.headerText}/>
                 {/* <h1>This is my Class component</h1> */}
+
+            <SearchBox onInputChange={this.handleInputChange} />
             </div>
         )
     }
